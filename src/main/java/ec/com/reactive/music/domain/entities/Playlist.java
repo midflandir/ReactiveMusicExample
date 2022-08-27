@@ -9,10 +9,11 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Setter
-@Getter
+//@NoArgsConstructor
+//@AllArgsConstructor
+//@Setter
+//@Getter
+//@Builder(toBuilder = true) //Clonar objetos
 @Document(collection = "Playlist")
 @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="HH:mm:ss")
 public class Playlist {
