@@ -75,29 +75,6 @@ import java.time.LocalTime;
                 .onErrorResume(throwable -> Mono.just(new ResponseEntity<>(HttpStatus.NOT_MODIFIED)));
     }
 
-/*
-
-    @Override
-    public Mono<ResponseEntity<PlaylistDTO>> addSongtolaylist(String id, String songid) {
-
-        Mono<Song> songtoadd = iSongRepository.findById(songid);
-
-        return this.iPlaylistRepository
-                .findById(id)
-                .switchIfEmpty(Mono.error(new Throwable(HttpStatus.NOT_FOUND.toString())))
-                .flatMap(playlist -> {
-                    songtoadd.subscribe(result -> {
-                        playlist.getSongs().add(result);
-                        playlist.setDuration(
-                                Calculatetime(playlist.getDuration(), result.getDuration()));
-                        this.savePlaylist(entityToDTO(playlist))
-                                .switchIfEmpty(Mono.error(new Throwable(HttpStatus.NOT_MODIFIED.toString())));
-                    });
-                    return this.findPlaylistById(playlist.getIdPlaylist());
-                })
-                .map(albumDTOResponseEntity -> new ResponseEntity<>(albumDTOResponseEntity.getBody(),HttpStatus.ACCEPTED))
-                .onErrorResume(throwable -> Mono.just(new ResponseEntity<>(HttpStatus.NOT_MODIFIED)));
-    }*/
 
     @Override
     public Mono<ResponseEntity<PlaylistDTO>> addSongtolaylist(String id, SongDTO songDTO) {
@@ -175,27 +152,6 @@ import java.time.LocalTime;
 
         return this.modelMapper.map(playlist,PlaylistDTO.class);
     }
-  /*  @Override
-    public PlaylistDTO entityToDTOmanual(Playlist playlist) {
-        PlaylistDTO playlistDTO = null;
 
-        playlistDTO.setIdPlaylist(playlist.getIdPlaylist());
-        playlistDTO.setName(playlist.getName());
-        playlistDTO.setDuration(playlist.getDuration());
-        playlistDTO.setUsername(playlist.getUsername());
-        playlistDTO.setSongs(entityToDTO(playlist.getSongs()));
-        return playlistDTO;
-    }*/
-   /*public ArrayList<SongDTO> entityToDTO(ArrayList<Song> s) {
-        return s.iterator().hasNext();
-    }
-
-*/
-  /*  @Override
-    public ArrayList<SongDTO> entityToDTOSongManual(ArrayList<Song> songs) {
-
-        return songs.stream().map(song ->  songs new ArrayList<>(SongDTO) return );
-    }
-    */
 
 }

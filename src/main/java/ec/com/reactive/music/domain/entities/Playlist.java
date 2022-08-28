@@ -13,7 +13,7 @@ import java.util.ArrayList;
 //@AllArgsConstructor
 //@Setter
 //@Getter
-//@Builder(toBuilder = true) //Clonar objetos
+@Builder(toBuilder = true) //Clonar objetos
 @Document(collection = "Playlist")
 @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="HH:mm:ss")
 public class Playlist {

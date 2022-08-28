@@ -25,15 +25,7 @@ public class AlbumServiceImpl implements IAlbumService {
 
     @Override
     public Mono<ResponseEntity<Flux<AlbumDTO>>> findAllAlbums() {
-        //I was mistaken in this  solution bc the exception keeps throwing (I did not test when there is nothing on the DB)
-        // It is confirmed that It needs to be treated at the same level because when it get dropped there is nothing to treat it.
-        /*return Mono.justOrEmpty(new ResponseEntity<>(this.iAlbumRepository
-                                .findAll()
-                                .switchIfEmpty(Mono.error(new Throwable(HttpStatus.NO_CONTENT.toString())))
-                                .map(this::entityToDTO),HttpStatus.FOUND))
-                .onErrorResume(throwable -> Mono.just(new ResponseEntity<>(HttpStatus.NO_CONTENT)));*/
-        //This is the correct solution: You have to replicated for songs as well
-        //albumDTOS ->  new ResponseEntity<>(Flux.fromIterable(albumDTOS),HttpStatus.FOUND)
+
         return this.iAlbumRepository
                 .findAll()
                 .switchIfEmpty(Mono.error(new Throwable(HttpStatus.NO_CONTENT.toString())))
